@@ -1,3 +1,5 @@
+package airports;
+
 import planes.ExperimentalPlane;
 import models.MilitaryType;
 import planes.MilitaryPlane;
@@ -104,7 +106,7 @@ public class Airport {
 
     @Override
     public String toString() {
-        return "Airport{" +
+        return "airports.Airport{" +
                 "Planes=" + planes.toString() +
                 '}';
     }

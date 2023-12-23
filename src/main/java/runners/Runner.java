@@ -1,3 +1,6 @@
+package runners;
+
+import airports.Airport;
 import models.MilitaryType;
 import planes.MilitaryPlane;
 import planes.PassengerPlane;
@@ -5,6 +8,8 @@ import planes.Plane;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Runner {
     static List<Plane> planes = Arrays.asList(
@@ -25,14 +30,15 @@ public class Runner {
     );
 
     public static void main(String[] args) {
+        Logger logger = Logger.getLogger(Runner.class.getName());
         Airport airport = new Airport(planes);
         Airport militaryAirport = new Airport(airport.getMilitaryPlanes());
         Airport passengerAirport = new Airport(airport.getPassengerPlanes());
-        System.out.println("Military airport sorted by max distance: "
-                + militaryAirport.sortByMaxDistance().toString());
-        System.out.println("Passenger airport sorted by max speed: "
-                + passengerAirport.sortByMaxSpeed().toString());
-        System.out.println("Plane with max passenger capacity: "
-                + passengerAirport.getPassengerPlaneWithMaxPassengersCapacity());
+        for (String s : Arrays.asList("Military airport sorted by max distance: "
+                + militaryAirport.sortByMaxDistance().toString(), "Passenger airport sorted by max speed: "
+                + passengerAirport.sortByMaxSpeed().toString(), "Plane with max passenger capacity: "
+                + passengerAirport.getPassengerPlaneWithMaxPassengersCapacity())) {
+            logger.log(Level.INFO, s);
+        }
     }
 }
